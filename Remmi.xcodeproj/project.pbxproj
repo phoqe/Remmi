@@ -3,21 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9F012C4B255C7C0100B57D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F012C4A255C7C0100B57D4E /* AppDelegate.swift */; };
-		9F012C4D255C7C0100B57D4E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F012C4C255C7C0100B57D4E /* ContentView.swift */; };
 		9F012C4F255C7C0200B57D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F012C4E255C7C0200B57D4E /* Assets.xcassets */; };
 		9F012C52255C7C0200B57D4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F012C51255C7C0200B57D4E /* Preview Assets.xcassets */; };
 		9F012C55255C7C0200B57D4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F012C53255C7C0200B57D4E /* Main.storyboard */; };
+		9F012C61255C7C8600B57D4E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9F012C60255C7C8600B57D4E /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F012C47255C7C0100B57D4E /* Remmi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remmi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F012C4A255C7C0100B57D4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9F012C4C255C7C0100B57D4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F012C4E255C7C0200B57D4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F012C51255C7C0200B57D4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9F012C54255C7C0200B57D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F012C61255C7C8600B57D4E /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				9F012C4A255C7C0100B57D4E /* AppDelegate.swift */,
-				9F012C4C255C7C0100B57D4E /* ContentView.swift */,
 				9F012C4E255C7C0200B57D4E /* Assets.xcassets */,
 				9F012C53255C7C0200B57D4E /* Main.storyboard */,
 				9F012C56255C7C0200B57D4E /* Info.plist */,
@@ -90,6 +89,9 @@
 			dependencies = (
 			);
 			name = Remmi;
+			packageProductDependencies = (
+				9F012C60255C7C8600B57D4E /* SwiftSoup */,
+			);
 			productName = Remmi;
 			productReference = 9F012C47255C7C0100B57D4E /* Remmi.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 9F012C3E255C7C0100B57D4E;
+			packageReferences = (
+				9F012C5F255C7C8600B57D4E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 9F012C48255C7C0100B57D4E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -144,7 +149,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F012C4D255C7C0100B57D4E /* ContentView.swift in Sources */,
 				9F012C4B255C7C0100B57D4E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +300,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phoqe.Remmi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phoqe.remmi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -320,7 +324,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phoqe.Remmi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phoqe.remmi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -348,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F012C5F255C7C8600B57D4E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F012C60255C7C8600B57D4E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F012C5F255C7C8600B57D4E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F012C3F255C7C0100B57D4E /* Project object */;
 }
