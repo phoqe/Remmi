@@ -4,6 +4,7 @@
 //
 //  Created by Linus Långberg on 2020-11-11.
 //
+
 import Cocoa
 import SwiftUI
 import SwiftSoup
