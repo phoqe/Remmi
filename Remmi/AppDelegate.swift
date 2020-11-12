@@ -12,14 +12,27 @@ import SwiftSoup
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?
     var refreshTimer: Timer?
-
-    // TODO: Turn into setting.
-    let username = "phoqe"
+    var username = UserDefaults.standard.string(forKey: "username")!
 
     // The minutes between each refresh. Default is 5.
     let refreshInterval = 5
 
+    @IBOutlet weak var menu: NSMenu?
+    @IBOutlet weak var userMenuItem: NSMenuItem?
+    @IBOutlet weak var refreshMenuItem: NSMenuItem?
+    @IBOutlet weak var changeUsernameMenuItem: NSMenuItem?
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        UserDefaults.standard.register(defaults: [
+            "username": "phoqe"
+        ])
+
+        if username.isEmpty {
+            showChangeUsernameAlert()
+
+            return
+        }
+
         setupStatusItem()
         fetchContributions()
         setupRefreshTimer()
@@ -33,14 +46,56 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setupStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
-        statusItem?.button?.action = #selector(onStatusItemButtonClick)
+        if let menu = menu {
+            userMenuItem?.title = "User: \(username)"
+            refreshMenuItem?.action = #selector(onRefreshClick)
+            changeUsernameMenuItem?.action = #selector(onChangeUsernameClick)
+            statusItem?.menu = menu
+        }
     }
 
     func destroyStatusItem() {
         statusItem = nil
     }
 
-    @objc func onStatusItemButtonClick() {
+    @objc func onRefreshClick() {
+        refresh()
+    }
+
+    @objc func onChangeUsernameClick() {
+        showChangeUsernameAlert()
+    }
+
+    private func showChangeUsernameAlert() {
+        let alert = NSAlert()
+        let usernameTextField = NSTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 20))
+
+        usernameTextField.placeholderString = username
+
+        alert.messageText = "Change Username"
+        alert.informativeText = "Enter your GitHub username."
+        alert.alertStyle = .informational
+        alert.accessoryView = usernameTextField
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        alert.window.initialFirstResponder = alert.accessoryView
+
+        if alert.runModal() == .alertFirstButtonReturn {
+            changeUsername(withUsername: usernameTextField.stringValue)
+        }
+    }
+
+    private func changeUsername(withUsername username: String) {
+        UserDefaults.standard.setValue(username, forKey: "username")
+
+        self.username = UserDefaults.standard.string(forKey: "username")!
+
+        userMenuItem?.title = "User: \(username)"
+
+        refresh()
+    }
+
+    private func refresh() {
         invalidateRefreshTimer()
         fetchContributions()
         setupRefreshTimer()
