@@ -12,7 +12,7 @@ import SwiftSoup
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?
     var refreshTimer: Timer?
-    var username = UserDefaults.standard.string(forKey: "username")!
+    var username = UserDefaults.standard.string(forKey: "username") ?? ""
 
     // The minutes between each refresh. Default is 5.
     let refreshInterval = 5
@@ -23,9 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var changeUsernameMenuItem: NSMenuItem?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        UserDefaults.standard.register(defaults: [
-            "username": "phoqe"
-        ])
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
         if username.isEmpty {
             showChangeUsernameAlert()
@@ -33,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        setupStatusItem()
+        updateStatusItem()
         fetchContributions()
         setupRefreshTimer()
     }
@@ -43,9 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         destroyStatusItem()
     }
 
-    func setupStatusItem() {
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-
+    func updateStatusItem() {
         if let menu = menu {
             userMenuItem?.title = "User: \(username)"
             refreshMenuItem?.action = #selector(onRefreshClick)
@@ -70,18 +66,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let alert = NSAlert()
         let usernameTextField = NSTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 20))
 
-        usernameTextField.placeholderString = username
+        usernameTextField.placeholderString = username.isEmpty ? "GitHub username" : username
 
-        alert.messageText = "Change Username"
-        alert.informativeText = "Enter your GitHub username."
+        alert.messageText = username.isEmpty ? "Set username" : "Change username"
+        alert.informativeText = "Enter your GitHub username. We’ll fetch the number of contributions made on \(currentDateFormatted())."
         alert.alertStyle = .informational
         alert.accessoryView = usernameTextField
         alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Cancel")
+
+        if !username.isEmpty {
+            alert.addButton(withTitle: "Cancel")
+        }
+
         alert.window.initialFirstResponder = alert.accessoryView
 
         if alert.runModal() == .alertFirstButtonReturn {
-            changeUsername(withUsername: usernameTextField.stringValue)
+            let username = usernameTextField.stringValue
+
+            if username.isEmpty {
+                if self.username.isEmpty {
+                    NSApplication.shared.terminate(self)
+                }
+
+                return
+            }
+
+            changeUsername(withUsername: username)
         }
     }
 
@@ -90,18 +100,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         self.username = UserDefaults.standard.string(forKey: "username")!
 
-        userMenuItem?.title = "User: \(username)"
-
         refresh()
     }
 
     private func refresh() {
         invalidateRefreshTimer()
+        updateStatusItem()
         fetchContributions()
         setupRefreshTimer()
     }
 
     private func fetchContributions() {
+        showLoading()
+
         URLSession.shared.dataTask(with: contributionsUrl()) { data, response, error in
             if error != nil {
                 self.showError()
@@ -151,25 +162,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func contributionsUrl() -> URL {
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-
-        let to = dateFormatter.string(from: Date())
+        let to = currentDateFormatted()
 
         return URL(string: "https://github.com/users/\(username)/contributions?to=\(to)")!
     }
 
+    private func currentDateFormatted() -> String {
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        return dateFormatter.string(from: Date())
+    }
+
+    private func showLoading() {
+        DispatchQueue.main.async {
+            self.statusItem?.button?.title = "Loading…"
+            self.statusItem?.button?.contentTintColor = .secondaryLabelColor
+        }
+    }
+
     private func showError() {
         DispatchQueue.main.async {
-            self.statusItem?.button?.isHidden = true
+            self.statusItem?.button?.title = "Error"
+            self.statusItem?.button?.contentTintColor = .systemRed
         }
     }
 
     private func showContributions(count: String) {
         DispatchQueue.main.async {
             self.statusItem?.button?.title = count
-            self.statusItem?.button?.isHidden = false
+            self.statusItem?.button?.contentTintColor = nil
         }
     }
 }
