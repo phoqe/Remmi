@@ -14,7 +14,6 @@ A fun way to begin writing macOS apps in Swift. Nothing serious.
 ## Remarks
 
 - The count refreshes every 5 minutes.
-- The username is hardcoded. Should probably add a name input somewhere.
 - Clicking the count triggers a refresh and resets the refresh timer.
 - SwiftSoup for DOM parsing. Yes, it’s an unnecessary overhead.
 
