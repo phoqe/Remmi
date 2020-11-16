@@ -163,9 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func contributionsUrl() -> URL {
-        let to = currentDateFormatted()
-
-        return URL(string: "https://github.com/users/\(username)/contributions?to=\(to)")!
+        return URL(string: "https://github.com/users/\(username)/contributions")!
     }
 
     private func currentDateFormatted() -> String {
