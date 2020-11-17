@@ -177,21 +177,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func showLoading() {
         DispatchQueue.main.async {
             self.statusItem?.button?.title = "Loading…"
-            self.statusItem?.button?.contentTintColor = .secondaryLabelColor
         }
     }
 
     private func showError() {
         DispatchQueue.main.async {
             self.statusItem?.button?.title = "Error"
-            self.statusItem?.button?.contentTintColor = .systemRed
         }
     }
 
     private func showContributions(count: String) {
         DispatchQueue.main.async {
             self.statusItem?.button?.title = count
-            self.statusItem?.button?.contentTintColor = nil
         }
     }
 }
