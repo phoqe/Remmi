@@ -17,6 +17,13 @@ A fun way to begin writing macOS apps in Swift. Nothing serious.
 - Clicking the count triggers a refresh and resets the refresh timer.
 - SwiftSoup for DOM parsing. Yes, it’s an unnecessary overhead.
 
+## Installation
+
+1. Download the latest stable version of Remmi in the [Releases](https://github.com/phoqe/remmi/releases) section on GitHub.
+2. Expand the `Remmi.zip` file.
+3. Drag the `Remmi.app` file to the `~/Applications` directory.
+4. Start Remmi and enter your GitHub username.
+
 ## Licence
 
 MIT
