@@ -112,8 +112,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func fetchContributions() {
-        showLoading()
-
         URLSession.shared.dataTask(with: contributionsUrl()) { data, response, error in
             if error != nil {
                 self.showError()
@@ -172,12 +170,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
         return dateFormatter.string(from: Date())
-    }
-
-    private func showLoading() {
-        DispatchQueue.main.async {
-            self.statusItem?.button?.title = "Loading…"
-        }
     }
 
     private func showError() {
