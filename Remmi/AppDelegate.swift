@@ -134,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             do {
                 let doc = try SwiftSoup.parse(html)
                 let days = try doc.getElementsByTag("rect")
-                let today = days[days.size() - 1]
+                let today = days[days.size() - 6]
 
                 guard let attrs = today.getAttributes() else {
                     self.showError()
