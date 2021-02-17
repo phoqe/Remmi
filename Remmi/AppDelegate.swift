@@ -16,8 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var refreshTimer: Timer?
     var username = UserDefaults.standard.string(forKey: "username") ?? ""
 
-    // The minutes between each refresh. Default is 5.
-    let refreshInterval = 5
+    // The minutes between each refresh.
+    let refreshInterval = 0.5
     let reachability = try! Reachability()
 
     @IBOutlet weak var menu: NSMenu?
