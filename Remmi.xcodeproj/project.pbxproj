@@ -290,7 +290,7 @@
 				CODE_SIGN_ENTITLEMENTS = Remmi/Remmi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Remmi/Preview Content\"";
 				DEVELOPMENT_TEAM = 962Q3B697V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -301,7 +301,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phoqe.remmi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -316,7 +316,7 @@
 				CODE_SIGN_ENTITLEMENTS = Remmi/Remmi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Remmi/Preview Content\"";
 				DEVELOPMENT_TEAM = 962Q3B697V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -327,7 +327,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.phoqe.remmi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
