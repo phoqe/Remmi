@@ -12,7 +12,6 @@
 		9F012C52255C7C0200B57D4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F012C51255C7C0200B57D4E /* Preview Assets.xcassets */; };
 		9F012C55255C7C0200B57D4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F012C53255C7C0200B57D4E /* Main.storyboard */; };
 		9F012C61255C7C8600B57D4E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9F012C60255C7C8600B57D4E /* SwiftSoup */; };
-		9F162B3025D5541C005E37A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 9F162B2F25D5541C005E37A6 /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F012C61255C7C8600B57D4E /* SwiftSoup in Frameworks */,
-				9F162B3025D5541C005E37A6 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +91,6 @@
 			name = Remmi;
 			packageProductDependencies = (
 				9F012C60255C7C8600B57D4E /* SwiftSoup */,
-				9F162B2F25D5541C005E37A6 /* Reachability */,
 			);
 			productName = Remmi;
 			productReference = 9F012C47255C7C0100B57D4E /* Remmi.app */;
@@ -124,7 +121,6 @@
 			mainGroup = 9F012C3E255C7C0100B57D4E;
 			packageReferences = (
 				9F012C5F255C7C8600B57D4E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				9F162B2E25D5541C005E37A6 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 9F012C48255C7C0100B57D4E /* Products */;
 			projectDirPath = "";
@@ -370,14 +366,6 @@
 				minimumVersion = 2.3.2;
 			};
 		};
-		9F162B2E25D5541C005E37A6 /* XCRemoteSwiftPackageReference "Reachability" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -385,11 +373,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F012C5F255C7C8600B57D4E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		9F162B2F25D5541C005E37A6 /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F162B2E25D5541C005E37A6 /* XCRemoteSwiftPackageReference "Reachability" */;
-			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

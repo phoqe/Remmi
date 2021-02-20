@@ -8,7 +8,6 @@
 import Cocoa
 import SwiftUI
 import SwiftSoup
-import Reachability
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -18,7 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // The minutes between each refresh.
     let refreshInterval = 0.5
-    let reachability = try! Reachability()
 
     @IBOutlet weak var menu: NSMenu?
     @IBOutlet weak var userMenuItem: NSMenuItem?
@@ -37,35 +35,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateStatusItem()
         fetchContributions()
         setupRefreshTimer()
-        attachReachability()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         invalidateRefreshTimer()
         destroyStatusItem()
-        destroyReachability()
-    }
-
-    func attachReachability() {
-        reachability.whenReachable = { reachability in
-            self.refreshMenuItem?.isEnabled = true
-            self.refresh()
-        }
-
-        reachability.whenUnreachable = { reachability in
-            self.refreshMenuItem?.isEnabled = false
-            self.invalidateRefreshTimer()
-        }
-
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("couldn't start notifier, ignoring network reachability listener")
-        }
-    }
-
-    func destroyReachability() {
-        reachability.stopNotifier()
     }
 
     func updateStatusItem() {
