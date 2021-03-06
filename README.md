@@ -19,10 +19,24 @@ A fun way to begin writing macOS apps in Swift. Nothing serious.
 
 ## Installation
 
+I recommend installing Remmi with Homebrew for automatic updates.
+
+### Homebrew
+
+```sh
+brew install --cask phoqe/cask/phoqe-remmi
+```
+
+If you want Remmi to launch at login, add it to Login Items.
+
+### Manual
+
 1. Download the latest stable version of Remmi in the [Releases](https://github.com/phoqe/remmi/releases) section on GitHub.
 2. Expand the `Remmi.zip` file.
 3. Drag the `Remmi.app` file to the `~/Applications` directory.
 4. Start Remmi and enter your GitHub username.
+
+If you want Remmi to launch at login, add it to Login Items.
 
 ## Licence
 
